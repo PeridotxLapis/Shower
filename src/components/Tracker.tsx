@@ -113,53 +113,47 @@ export function Tracker() {
   };
 
   return (
-    <div
-      className="min-h-screen p-4 md:p-8"
-      style={{
-        backgroundImage: 'url(/f3a79899-1828-4224-9a11-880d2baf304e.png)',
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen bg-transparent p-4 md:p-8 flex flex-col items-center justify-center">
+      <div className="w-full max-w-2xl">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-            Bathing Tracker
+            Shower Tracker
           </h1>
         </div>
 
         {/* Mode Selection */}
         {!isTracking && (
-          <div className="grid grid-cols-3 gap-3 mb-8">
-            {(['Bath', 'Shower', 'Both'] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => startSession(m)}
-                className="py-4 px-3 bg-gradient-to-br from-teal-400/60 to-blue-500/60 hover:from-teal-500/70 hover:to-blue-600/70 text-white font-bold rounded-xl backdrop-blur border border-white/30 transition drop-shadow-lg text-lg"
-              >
-                {m}
-              </button>
-            ))}
+          <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-8 mb-8 shadow-xl">
+            <div className="grid grid-cols-3 gap-4">
+              {(['Bath', 'Shower', 'Both'] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => startSession(m)}
+                  className="py-5 px-4 bg-white/40 hover:bg-white/50 text-white font-bold rounded-xl backdrop-blur border border-white/50 transition drop-shadow-lg text-lg"
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
         {/* Active Session */}
         {isTracking && (
-          <div className="backdrop-blur-md bg-white/15 border border-white/40 rounded-2xl p-8 mb-8 shadow-xl">
+          <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-8 mb-8 shadow-xl">
             <div className="text-center">
-              <p className="text-white/90 text-lg drop-shadow font-semibold mb-2">
+              <p className="text-white text-lg drop-shadow font-bold mb-4">
                 Current Session
               </p>
-              <p className="text-white drop-shadow mb-1 font-semibold">
-                Mode: <span className="font-bold text-xl">{mode}</span>
+              <p className="text-white drop-shadow mb-2 font-semibold text-xl">
+                {mode}
               </p>
-              <p className="text-white/90 drop-shadow mb-4 font-semibold">
+              <p className="text-white/90 drop-shadow mb-2 font-semibold">
                 Start Time: {formatTimeOnly(startTime?.toISOString() || '')}
               </p>
               <p className="text-white/90 drop-shadow mb-6 font-semibold">
-                Today: {new Date().toLocaleDateString('en-US', {
+                {new Date().toLocaleDateString('en-US', {
                   weekday: 'long',
                   month: 'long',
                   day: 'numeric',
@@ -173,7 +167,7 @@ export function Tracker() {
 
               <button
                 onClick={finishSession}
-                className="w-full py-4 bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white font-bold rounded-lg transition drop-shadow-lg text-lg"
+                className="w-full py-4 bg-green-500/60 hover:bg-green-600/70 text-white font-bold rounded-lg transition drop-shadow-lg text-lg"
               >
                 Finish
               </button>
@@ -182,35 +176,35 @@ export function Tracker() {
         )}
 
         {/* History */}
-        <div className="backdrop-blur-md bg-white/15 border border-white/40 rounded-2xl p-6 shadow-xl">
-          <h2 className="text-2xl font-bold text-white drop-shadow mb-6">History</h2>
+        <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-6 shadow-xl">
+          <h2 className="text-2xl font-bold text-white drop-shadow mb-6 text-center">History</h2>
 
           {sessions.length === 0 ? (
-            <p className="text-white/80 text-center drop-shadow">No sessions yet. Start tracking!</p>
+            <p className="text-white/90 text-center drop-shadow font-semibold">No sessions yet. Start tracking!</p>
           ) : (
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {sessions.map((session) => (
                 <div
                   key={session.id}
-                  className="flex items-center justify-between bg-white/10 hover:bg-white/15 border border-white/20 rounded-lg p-4 transition"
+                  className="flex items-center justify-between bg-white/30 hover:bg-white/40 border border-white/30 rounded-lg p-4 transition"
                 >
                   <div className="flex-1">
                     <p className="text-white font-bold drop-shadow">
                       {formatDate(session.start_time)}
                     </p>
-                    <p className="text-white/90 drop-shadow text-sm">
+                    <p className="text-white/95 drop-shadow text-sm font-semibold">
                       {session.mode}
                     </p>
                     <p className="text-white/80 drop-shadow text-xs">
                       {formatTimeOnly(session.start_time)} - {formatTimeOnly(session.end_time || '')}
                     </p>
-                    <p className="text-teal-300 drop-shadow font-semibold">
+                    <p className="text-white font-semibold drop-shadow mt-1">
                       Duration: {formatTime(session.duration_seconds || 0)}
                     </p>
                   </div>
                   <button
                     onClick={() => deleteSession(session.id)}
-                    className="ml-4 p-2 hover:bg-red-500/40 rounded-lg transition text-red-300 hover:text-red-100"
+                    className="ml-4 p-2 hover:bg-red-600/40 rounded-lg transition text-red-100 hover:text-white"
                   >
                     <Trash2 size={20} />
                   </button>
