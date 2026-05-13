@@ -113,24 +113,26 @@ export function Tracker() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent p-4 md:p-8 flex flex-col items-center justify-center">
-      <div className="w-full max-w-2xl">
+    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', backgroundColor: 'transparent', position: 'relative' }}>
+      <div style={{ width: '100%', maxWidth: '600px' }}>
         {/* Header */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#1f2937', textShadow: '0 4px 8px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.3)' }}>
             Shower Tracker
           </h1>
         </div>
 
         {/* Mode Selection */}
         {!isTracking && (
-          <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-8 mb-8 shadow-xl">
-            <div className="grid grid-cols-3 gap-4">
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
               {(['Bath', 'Shower', 'Both'] as const).map((m) => (
                 <button
                   key={m}
                   onClick={() => startSession(m)}
-                  className="py-5 px-4 bg-white/40 hover:bg-white/50 text-white font-bold rounded-xl backdrop-blur border border-white/50 transition drop-shadow-lg text-lg"
+                  style={{ padding: '1rem 0.75rem', backgroundColor: 'rgba(255, 255, 255, 0.4)', borderRadius: '0.75rem', border: '1px solid rgba(255, 255, 255, 0.5)', color: '#1f2937', fontWeight: 'bold', fontSize: '1rem', cursor: 'pointer', transition: 'all 0.3s', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.4)'}
                 >
                   {m}
                 </button>
@@ -141,70 +143,74 @@ export function Tracker() {
 
         {/* Active Session */}
         {isTracking && (
-          <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-8 mb-8 shadow-xl">
-            <div className="text-center">
-              <p className="text-white text-lg drop-shadow font-bold mb-4">
-                Current Session
-              </p>
-              <p className="text-white drop-shadow mb-2 font-semibold text-xl">
-                {mode}
-              </p>
-              <p className="text-white/90 drop-shadow mb-2 font-semibold">
-                Start Time: {formatTimeOnly(startTime?.toISOString() || '')}
-              </p>
-              <p className="text-white/90 drop-shadow mb-6 font-semibold">
-                {new Date().toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </p>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)', textAlign: 'center' }}>
+            <p style={{ color: '#1f2937', fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}>
+              Current Session
+            </p>
+            <p style={{ color: '#1f2937', fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '0.5rem', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}>
+              {mode}
+            </p>
+            <p style={{ color: '#374151', fontWeight: '500', marginBottom: '0.5rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>
+              Start Time: {formatTimeOnly(startTime?.toISOString() || '')}
+            </p>
+            <p style={{ color: '#374151', fontWeight: '500', marginBottom: '1.5rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>
+              {new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </p>
 
-              <div className="text-6xl font-bold text-white drop-shadow mb-8 font-mono">
-                {formatTime(elapsed)}
-              </div>
-
-              <button
-                onClick={finishSession}
-                className="w-full py-4 bg-green-500/60 hover:bg-green-600/70 text-white font-bold rounded-lg transition drop-shadow-lg text-lg"
-              >
-                Finish
-              </button>
+            <div style={{ fontSize: '3.5rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '2rem', fontFamily: 'monospace', textShadow: '0 4px 8px rgba(255, 255, 255, 0.8)' }}>
+              {formatTime(elapsed)}
             </div>
+
+            <button
+              onClick={finishSession}
+              style={{ width: '100%', padding: '1rem', backgroundColor: 'rgba(34, 197, 94, 0.6)', color: '#1f2937', fontWeight: 'bold', borderRadius: '0.5rem', border: 'none', cursor: 'pointer', fontSize: '1rem', transition: 'all 0.3s', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.8)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.6)'}
+            >
+              Finish
+            </button>
           </div>
         )}
 
         {/* History */}
-        <div className="backdrop-blur-md bg-white/20 border border-white/40 rounded-2xl p-6 shadow-xl">
-          <h2 className="text-2xl font-bold text-white drop-shadow mb-6 text-center">History</h2>
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '1.5rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '1.5rem', textAlign: 'center', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}>History</h2>
 
           {sessions.length === 0 ? (
-            <p className="text-white/90 text-center drop-shadow font-semibold">No sessions yet. Start tracking!</p>
+            <p style={{ color: '#374151', textAlign: 'center', fontWeight: '500', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>No sessions yet. Start tracking!</p>
           ) : (
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxHeight: '400px', overflowY: 'auto' }}>
               {sessions.map((session) => (
                 <div
                   key={session.id}
-                  className="flex items-center justify-between bg-white/30 hover:bg-white/40 border border-white/30 rounded-lg p-4 transition"
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'rgba(255, 255, 255, 0.3)', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '0.5rem', padding: '1rem', transition: 'all 0.3s' }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.4)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)'}
                 >
-                  <div className="flex-1">
-                    <p className="text-white font-bold drop-shadow">
+                  <div style={{ flex: 1 }}>
+                    <p style={{ color: '#1f2937', fontWeight: 'bold', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>
                       {formatDate(session.start_time)}
                     </p>
-                    <p className="text-white/95 drop-shadow text-sm font-semibold">
+                    <p style={{ color: '#1f2937', fontSize: '0.875rem', fontWeight: '600', textShadow: '0 1px 2px rgba(255, 255, 255, 0.4)' }}>
                       {session.mode}
                     </p>
-                    <p className="text-white/80 drop-shadow text-xs">
+                    <p style={{ color: '#4b5563', fontSize: '0.75rem', textShadow: '0 1px 2px rgba(255, 255, 255, 0.3)' }}>
                       {formatTimeOnly(session.start_time)} - {formatTimeOnly(session.end_time || '')}
                     </p>
-                    <p className="text-white font-semibold drop-shadow mt-1">
+                    <p style={{ color: '#1f2937', fontWeight: '600', marginTop: '0.25rem', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>
                       Duration: {formatTime(session.duration_seconds || 0)}
                     </p>
                   </div>
                   <button
                     onClick={() => deleteSession(session.id)}
-                    className="ml-4 p-2 hover:bg-red-600/40 rounded-lg transition text-red-100 hover:text-white"
+                    style={{ marginLeft: '1rem', padding: '0.5rem', backgroundColor: 'transparent', border: 'none', cursor: 'pointer', color: '#dc2626', transition: 'all 0.3s', fontSize: '1.25rem' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#b91c1c'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#dc2626'}
                   >
                     <Trash2 size={20} />
                   </button>
