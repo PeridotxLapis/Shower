@@ -2,25 +2,34 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: transparent !important;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
+html {
+  width: 100vw;
+  height: 100vh;
   background-image: url('/f3a79899-1828-4224-9a11-880d2baf304e.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
-  min-width: 100vw;
   overflow-x: hidden;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background: transparent !important;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
-  background: transparent;
+  background: transparent !important;
+}
+
+div {
+  background-color: transparent !important;
 }
 
 @tailwind base;

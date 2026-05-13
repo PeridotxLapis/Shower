@@ -113,10 +113,10 @@ export function Tracker() {
   };
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', backgroundColor: 'transparent', position: 'relative' }}>
-      <div style={{ width: '100%', maxWidth: '600px' }}>
+    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', backgroundColor: 'transparent !important', position: 'relative', background: 'transparent !important' }}>
+      <div style={{ width: '100%', maxWidth: '600px', backgroundColor: 'transparent !important', background: 'transparent !important' }}>
         {/* Header */}
-        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+        <div style={{ marginBottom: '2rem', textAlign: 'center', backgroundColor: 'transparent !important', background: 'transparent !important' }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#1f2937', textShadow: '0 4px 8px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.3)' }}>
             Shower Tracker
           </h1>
@@ -124,8 +124,8 @@ export function Tracker() {
 
         {/* Mode Selection */}
         {!isTracking && (
-          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.1) !important', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', backgroundColor: 'transparent !important', background: 'transparent !important' }}>
               {(['Bath', 'Shower', 'Both'] as const).map((m) => (
                 <button
                   key={m}
@@ -143,7 +143,7 @@ export function Tracker() {
 
         {/* Active Session */}
         {isTracking && (
-          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)', textAlign: 'center' }}>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.1) !important', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '2rem', marginBottom: '2rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)', textAlign: 'center' }}>
             <p style={{ color: '#1f2937', fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}>
               Current Session
             </p>
@@ -178,13 +178,13 @@ export function Tracker() {
         )}
 
         {/* History */}
-        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '1.5rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.1) !important', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '1.5rem', padding: '1.5rem', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '1.5rem', textAlign: 'center', textShadow: '0 2px 4px rgba(255, 255, 255, 0.6)' }}>History</h2>
 
           {sessions.length === 0 ? (
             <p style={{ color: '#374151', textAlign: 'center', fontWeight: '500', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>No sessions yet. Start tracking!</p>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxHeight: '400px', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxHeight: '400px', overflowY: 'auto', backgroundColor: 'transparent !important', background: 'transparent !important' }}>
               {sessions.map((session) => (
                 <div
                   key={session.id}
@@ -192,7 +192,7 @@ export function Tracker() {
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.4)'}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)'}
                 >
-                  <div style={{ flex: 1 }}>
+                  <div style={{ flex: 1, backgroundColor: 'transparent !important', background: 'transparent !important' }}>
                     <p style={{ color: '#1f2937', fontWeight: 'bold', textShadow: '0 1px 3px rgba(255, 255, 255, 0.5)' }}>
                       {formatDate(session.start_time)}
                     </p>
