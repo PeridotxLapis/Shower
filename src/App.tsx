@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2rem', margin: 0, backgroundImage: "url('/f3a79899-1828-4224-9a11-880d2baf304e.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat' }}>
+    <div style={{ width: '100vw', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'start', padding: '2rem', margin: 0, backgroundImage: "url('./f3a79899-1828-4224-9a11-880d2baf304e.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat' }}>
       <div style={{ width: '100%', maxWidth: '500px', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '1rem', padding: '2rem', textAlign: 'center', marginTop: '2rem' }}>
         <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#111' }}>Shower Tracker</h1>
         
