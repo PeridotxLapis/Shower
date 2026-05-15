@@ -2,22 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  width: 100vw !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: transparent !important;
-}
-
-div, main, section, header {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-h1, h2, h3, p, span, button {
-  color: #2c2c2c !important;
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 body {
