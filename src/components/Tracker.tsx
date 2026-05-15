@@ -69,7 +69,7 @@ export default function Tracker() {
             <p style={{ fontSize: '0.875rem', fontWeight: '600', textTransform: 'uppercase', color: '#444', marginBottom: '0.25rem' }}>Active {currentMode}</p>
             <p style={{ fontSize: '2.5rem', fontWeight: 'bold', fontFamily: 'monospace', marginBottom: '0.5rem' }}>{formatTime(elapsedTime)}</p>
             <p style={{ fontSize: '0.75rem', color: '#444', marginBottom: '1rem' }}>Started at {startTime}</p>
-            <button onClick={endSession} style={{ w: '100%', padding: '0.75rem', background: 'rgba(239,68,68,0.8), color: 'white', fontWeight: 'bold', borderRadius: '0.75rem', border: 'none', cursor: 'pointer' }}>Finish Session</button>
+            <button onClick={endSession} style={{ width: '100%', padding: '0.75rem', background: 'rgba(239,68,68,0.8), color: 'white', fontWeight: 'bold', borderRadius: '0.75rem', border: 'none', cursor: 'pointer' }}>Finish Session</button>
           </div>
         )}
       </div>
