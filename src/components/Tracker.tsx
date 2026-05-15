@@ -22,7 +22,7 @@ export default function Tracker() {
     return () => clearInterval(interval);
   }, [currentMode]);
 
-  const startSession = (mode) => {
+  const startSession = (mode: string) => {
     setCurrentMode(mode);
     setStartTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
   };
@@ -41,16 +41,16 @@ export default function Tracker() {
     setStartTime(null);
   };
 
-  const deleteEntry = (id) => {
+  const deleteEntry = (id: number) => {
     const updated = history.filter(item => item.id !== id);
     setHistory(updated);
     localStorage.setItem('shower_history', JSON.stringify(updated));
   };
 
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return ${mins}:${secs < 10 ? '0' : ''}${secs};
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   return (
