@@ -113,8 +113,8 @@ export function Tracker() {
   };
 
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', margin: 0, overflow: 'hidden' }}>
-      <div style={{ width: '100%', maxWidth: '600px' }}>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', margin: 0, overflow: 'hidden', background: 'transparent', backgroundColor: 'transparent' }}>
+      <div style={{ width: '100%', maxWidth: '600px', background: 'transparent', backgroundColor: 'transparent' }}>
         {/* Header */}
         <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
           <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: '#333', textShadow: '0 2px 8px rgba(255, 255, 255, 0.9)' }}>
