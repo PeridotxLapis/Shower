@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ShowerHead, Bath, Clock, Trash2 } from 'lucide-react';
 
 export default function Tracker() {
-  const [currentMode, setCurrentMode] = useState(null);
-  const [startTime, setStartTime] = useState(null);
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [history, setHistory] = useState([]);
+  const [currentMode, setCurrentMode] = useState<string | null>(null);
+  const [startTime, setStartTime] = useState<string | null>(null);
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
     const saved = localStorage.getItem('shower_history');
@@ -13,9 +13,9 @@ export default function Tracker() {
   }, []);
 
   useEffect(() => {
-    let interval;
+    let interval: any;
     if (currentMode) {
-      interval = setInterval(() => setElapsedTime(prev => prev + 1), 1000);
+      interval = setInterval(() => setElapsedTime((prev) => prev + 1), 1000);
     } else {
       setElapsedTime(0);
     }
@@ -42,7 +42,7 @@ export default function Tracker() {
   };
 
   const deleteEntry = (id: number) => {
-    const updated = history.filter(item => item.id !== id);
+    const updated = history.filter((item) => item.id !== id);
     setHistory(updated);
     localStorage.setItem('shower_history', JSON.stringify(updated));
   };
@@ -50,7 +50,7 @@ export default function Tracker() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `\${mins}:\${secs < 10 ? '0' : ''}\${secs}`;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   return (
@@ -69,7 +69,7 @@ export default function Tracker() {
             <p style={{ fontSize: '0.875rem', fontWeight: '600', textTransform: 'uppercase', color: '#444', marginBottom: '0.25rem' }}>Active {currentMode}</p>
             <p style={{ fontSize: '2.5rem', fontWeight: 'bold', fontFamily: 'monospace', marginBottom: '0.5rem' }}>{formatTime(elapsedTime)}</p>
             <p style={{ fontSize: '0.75rem', color: '#444', marginBottom: '1rem' }}>Started at {startTime}</p>
-            <button onClick={endSession} style={{ width: '100%', padding: '0.75rem', background: 'rgba(239,68,68,0.8), color: 'white', fontWeight: 'bold', borderRadius: '0.75rem', border: 'none', cursor: 'pointer' }}>Finish Session</button>
+            <button onClick={endSession} style={{ width: '100%', padding: '0.75rem', background: 'rgba(239,68,68,0.8)', color: 'white', fontWeight: 'bold', borderRadius: '0.75rem', border: 'none', cursor: 'pointer' }}>Finish Session</button>
           </div>
         )}
       </div>
@@ -80,8 +80,8 @@ export default function Tracker() {
           <p style={{ fontSize: '0.875rem', color: '#444', textAlign: 'center', padding: '1rem 0' }}>No sessions yet. Start tracking!</p>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {history.map(item => (
-              <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'between', padding: '0.75rem', background: 'rgba(255,255,255,0.2)', borderRadius: '0.75rem', border: '1px solid rgba(255,255,255,0.1)' }}>
+            {history.map((item) => (
+              <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.75rem', background: 'rgba(255,255,255,0.2)', borderRadius: '0.75rem', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 'bold', fontSize: '0.875rem' }}>{item.mode} ({item.duration} mins)</p>
                   <p style={{ fontSize: '0.75rem', color: '#444' }}>{item.date} | {item.start} - {item.end}</p>
